@@ -21,7 +21,6 @@ import { Secao2Module } from './secao2/secao2.module';
     Secao1Module,
     Secao2Module,
     MaterialModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

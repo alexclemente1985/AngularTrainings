@@ -1,0 +1,39 @@
+<section>
+  <mat-card class="twoWayDataBindingCard">
+    <mat-card-content>
+      <form>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your first name" [(ngModel)]="name1" name="firstname" />
+        </mat-form-field>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your last name" [(ngModel)]="name2" name="lastname"
+            [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your first name" [(ngModel)]="client.firstName" name="cfirstname" />
+        </mat-form-field>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your last name" [(ngModel)]="client.lastName" name="clastname" />
+        </mat-form-field>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your age" [(ngModel)]="client.age" name="cage" />
+        </mat-form-field>
+        <mat-form-field class="formField">
+          <input matInput placeholder="Enter your address" [(ngModel)]="client.address" name="caddress" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <p>{{name1}}</p>
+      <p>{{name2}}</p>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <p>{{client.firstName}}</p>
+      <p>{{client.lastName}}</p>
+      <p>{{client.age}}</p>
+      <p>{{client.address}}</p>
+    </mat-card-actions>
+  </mat-card>
+</section>
