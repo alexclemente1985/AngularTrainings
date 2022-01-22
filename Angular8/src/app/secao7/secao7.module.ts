@@ -2,11 +2,15 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MaterialModule } from "../modules/material/material.module";
-import {RxjsBasicComponent} from "./components"
+import {RxjsBasicComponent, RxjsColdObservablesComponent, RxjsHotObservablesIntroComponent} from "./components";
 
 @NgModule({
-  declarations:[RxjsBasicComponent],
+  declarations:[
+    RxjsBasicComponent,
+    RxjsColdObservablesComponent,
+    RxjsHotObservablesIntroComponent
+  ],
   imports:[CommonModule, MaterialModule, FormsModule],
-  exports:[RxjsBasicComponent]
+  exports:[RxjsBasicComponent, RxjsColdObservablesComponent, RxjsHotObservablesIntroComponent]
 })
 export class Secao7Module{}
