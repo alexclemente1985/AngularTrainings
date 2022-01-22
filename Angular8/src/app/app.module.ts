@@ -8,6 +8,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { Secao1Module } from './secao1/secao1.module';
 import { Secao2Module } from './secao2/secao2.module';
 import { Secao3Module } from './secao3/secao3.module';
+import { Secao7Module } from './secao7/secao7.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { Secao3Module } from './secao3/secao3.module';
     Secao1Module,
     Secao2Module,
     Secao3Module,
-    MaterialModule,
+    Secao7Module,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
