@@ -48,9 +48,7 @@ export class DepartmentComponent implements OnInit {
       this.departmentService.add({name: this.depName})
       .subscribe(
         (dep)=>{
-          this.clearFields();
           this.notify('Inserted!');
-          console.log(dep)
         },
         (err)=>{
           this.notify('Error');
@@ -58,6 +56,7 @@ export class DepartmentComponent implements OnInit {
         }
       )
     }
+    this.clearFields();
   }
 
   cancel(){
@@ -67,7 +66,7 @@ export class DepartmentComponent implements OnInit {
     this.departmentService.del(dep)
     .subscribe(
       ()=>this.notify('Removed!'),
-      (err)=>console.log(err)
+      (err)=>this.notify(err.error.msg)
     )
   }
   edit(dep: Department){

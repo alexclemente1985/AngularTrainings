@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 import { Department } from 'src/app/interfaces';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class DepartmentService {
 
   readonly url = 'http://localhost:3000/departments';
 
-  private departmentSubject$: BehaviorSubject<Department[]> = new BehaviorSubject<Department[]>([])
+  private departmentSubject$: BehaviorSubject<Department[]> = new BehaviorSubject<Department[]>(null as unknown as Department[])
   private loaded: boolean = false;
 
   constructor(private http: HttpClient) { }
@@ -19,7 +19,10 @@ export class DepartmentService {
   get(): Observable<Department[]>{
     if(!this.loaded){
       this.http.get<Department[]>(this.url)
-      .pipe(tap((deps)=>console.log(deps)))
+      .pipe(
+        tap((deps)=>console.log(deps)),
+        delay(1000)
+        )
       .subscribe(this.departmentSubject$);
 
       this.loaded = true;
