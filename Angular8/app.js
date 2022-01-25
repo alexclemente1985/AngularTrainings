@@ -8,11 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors);
+app.use(cors());
 
-mongoose.connect("mongodb+srv://alexandre:<password>@igti-fullstack-bootcamp.zn883.mongodb.net/http_app?retryWrites=true&w=majority", {useNewUrlParser: true})
+mongoose.connect("mongodb://crudUser:crudUserPass@localhost:27017/angular8crud", {useNewUrlParser: true})
 
 app.use('/departments', department_controller);
 // app.use('/products', product_controller);
 
-app.listen(3000);
+app.listen(3000,'localhost',()=>{
+    console.log('conectado ao banco');
+});
