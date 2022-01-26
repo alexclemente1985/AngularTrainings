@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Dvd } from 'src/app/models/dvd';
 import { DvdService } from 'src/app/services/dvd/dvd.service';
@@ -13,7 +14,8 @@ export class DvdComponent implements OnInit {
   dvds$!: Observable<Dvd[]>;
 
   constructor(
-    private dvdService: DvdService
+    private dvdService: DvdService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,10 +23,10 @@ export class DvdComponent implements OnInit {
   }
 
   goDetails(i: number,dvd: Dvd){
-
+    this.router.navigate([`dvds/${i}`, {title: dvd.title}])
   }
   remove(i: number){
-
+    this.dvdService.remove(i);
   }
 
 }
