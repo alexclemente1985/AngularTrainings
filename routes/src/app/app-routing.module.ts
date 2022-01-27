@@ -25,6 +25,7 @@ const appRoutes: Routes = [
       ]},
     ]
   },
+  {path: 'electronics', loadChildren: ()=>import('./modules/index').then(m => m.ElectronicsModule)},
   {path: '', pathMatch: 'full', redirectTo: 'dvds'},
   {path: '**', component: PageNotFoundComponent}
 ];

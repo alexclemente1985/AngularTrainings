@@ -9,9 +9,9 @@ import {
   BookDetailComponent,
   BookAuthorsComponent
 } from '../components';
-import { MaterialModule } from './material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule , ElectronicsModule, ElectronicsRoutingModule} from '.';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AppRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class ComponentsModule { }

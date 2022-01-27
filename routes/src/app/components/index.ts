@@ -5,3 +5,5 @@ export {DvdComponent} from './dvd/dvd.component';
 export {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 export {DvdDetailComponent} from './dvd/dvd-detail/dvd-detail.component';
 export {DvdFormComponent} from './dvd/dvd-form/dvd-form.component';
+export {ElectronicListComponent} from './electronics/electronic-list/electronic-list.component';
+export {ElectronicDetailComponent} from './electronics/electronic-list/electronic-detail/electronic-detail.component';

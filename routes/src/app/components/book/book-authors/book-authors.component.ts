@@ -17,7 +17,6 @@ export class BookAuthorsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('BookAuthorsComponent');
     this.authors$ = this.route.paramMap
     .pipe(
       map((params: ParamMap)=>(params.get('authors')?.split(',')) as string[])
