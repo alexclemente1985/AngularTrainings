@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxFlex="30">
+    <h3>{{personObject.person.name}}</h3>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <div> Age: {{personObject.person.age}} - Address: {{personObject.person.address}} - City:
+      {{personObject.person.city}} - Country:{{personObject.person.country}}</div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button color="accent" (click)="update.emit(personObject.person)">
+      <mat-icon>update</mat-icon>Change
+    </button>
+    <button mat-button color="warn" (click)="delete.emit(personObject.person)">
+      <mat-icon>delete</mat-icon>Remove
+    </button>
+  </div>
+</div>
