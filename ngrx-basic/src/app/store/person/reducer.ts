@@ -1,28 +1,23 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Person } from 'src/app/models/person';
 import * as fromPersonActions from './actions';
+import { PersonActionTypes } from './types';
 
-export interface PeopleState{
-  person: Person
-}
+export interface PeopleState extends EntityState<Person>{}
 
-export const initialState: PeopleState[] = [];
+export const peopleAdapter: EntityAdapter<Person> = createEntityAdapter<Person>({
+  selectId: (p: Person) => p._id as string
+})
+export const initialState: PeopleState = peopleAdapter.getInitialState({});
 
-export function reducer(state: PeopleState[] = initialState, action: fromPersonActions.PersonActions): PeopleState[]{
+export function reducer(state = initialState, action: fromPersonActions.PersonActions){
   switch(action.type){
-    /* case fromPersonActions.PersonActionTypes.PERSON_ALL:
-      return state; */
-    case fromPersonActions.PersonActionTypes.PERSON_DELETE:
-      //return state.people.filter(p=> p._id != action.payload.id);
-      return state.filter(p=>p.person._id != action.payload.id)
-    case fromPersonActions.PersonActionTypes.PERSON_NEW:
-      return state.concat([action.payload]);
-    case fromPersonActions.PersonActionTypes.PERSON_UPDATE:
-      let people = state.slice();
-      let i = people.findIndex(p => p.person._id == action.payload.person._id);
-      if(i>=0){
-        people[i].person = action.payload.person;
-      }
-      return people;
+    case PersonActionTypes.PERSON_NEW:
+      return peopleAdapter.addOne(action.payload.person,state);
+    case PersonActionTypes.PERSON_DELETE:
+      return peopleAdapter.removeOne(action.payload.id, state);
+    case PersonActionTypes.PERSON_UPDATE:
+      return peopleAdapter.updateOne({id: action.payload.id, changes: action.payload.changes},state)
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule, MaterialModule } from './modules';
 import { StoreModule } from '@ngrx/store';
-import { appReducers } from './store/person';
+import { appReducers } from './store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
@@ -17,7 +17,6 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     MaterialModule,
     ComponentsModule,
-    //StoreModule.forRoot({}, {})
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25

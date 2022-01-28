@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 import { Person } from './models/person';
 import * as faker from '@faker-js/faker';
 import { select, Store } from '@ngrx/store';
-import { AppState } from './store/person';
+import { AppState } from './store';
 import { PersonAll, PersonDelete, PersonNew, PersonUpdate } from './store/person/actions';
 import { PeopleState } from './store/person/reducer';
+import * as fromPersonSelectors from './store/person//selectors'
 
 
 @Component({
@@ -16,13 +17,19 @@ import { PeopleState } from './store/person/reducer';
 export class AppComponent {
   title = 'ngrx-basic';
 
-  people$!: Observable<PeopleState[]>;
+  people$!: Observable<Person[]>
 
   constructor(private store: Store<AppState>){}
 
   ngOnInit(): void{
     this.store.dispatch(new PersonAll());
-    this.people$ = this.store.pipe(select('people'))
+    //this.people$ = this.store.pipe(select('people'));
+
+    //this.people$ = this.store.select(selectPeople);
+    this.people$ = this.store.select(fromPersonSelectors.selectAll)
+
+    /* this.store.select(selectPeopleCount)
+      .subscribe(n =>console.log('n ',n)) */
   }
 
   addNew(){
@@ -43,16 +50,14 @@ export class AppComponent {
   }
 
   update(p: Person){
-    console.log('changeando ', p, p.name)
+    let person = {...p};
 
-    p.name = faker.faker.name.findName();
-    p.address = faker.faker.address.streetAddress();
-    p.city = faker.faker.address.city();
-    p.country = faker.faker.address.country();
-    p.age = Math.round(Math.random()*100);
-    p._id = new Date().getMilliseconds().toString();
+    person.name = faker.faker.name.findName();
+    person.address = faker.faker.address.streetAddress();
+    person.city = faker.faker.address.city();
+    person.country = faker.faker.address.country();
+    person.age = Math.round(Math.random()*100);
 
-
-    this.store.dispatch(new PersonUpdate({person: p}))
+    this.store.dispatch(new PersonUpdate({id: person._id as string, changes: person}));
   }
 }
