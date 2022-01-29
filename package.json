@@ -1,0 +1,29 @@
+{
+  "name": "authserver",
+  "version": "1.0.0",
+  "description": "Servidor para projeto de autenticação Angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexclemente1985/AngularTrainings.git"
+  },
+  "author": "Alexandre C. Pinheiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexclemente1985/AngularTrainings/issues"
+  },
+  "homepage": "https://github.com/alexclemente1985/AngularTrainings#readme",
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8"
+  }
+}
