@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head></head>
+ 
+<body>
+    <a href="/">Voltar</a>
+    <h1 class="text-center title-1"> Lista de Usu&aacute;rios </h1>
+    <ul>
+        <% docs.forEach((user)=> { %>
+            <li><a href="mailto:<%= user.email %>">
+                    <%= user.username %>
+                </a></li>
+            <%})%>
+    </ul>
+    <h1 class="text-center title-1"> Cadastro de Usu&aacute;rio </h1>
+    <form action="/users/user" method="post">
+        <p>Username:<input type="text" name="username" /></p>
+        <p>Email:<input type="text" name="email" /></p>
+        <p><input type="submit" value="Salvar" /></p>
+    </form>
+</body>
+ 
+</html>
