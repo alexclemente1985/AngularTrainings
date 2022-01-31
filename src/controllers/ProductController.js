@@ -1,6 +1,6 @@
 const ProductModel = require('../models/ProductModel');
 
-module.export = {
+module.exports = {
     all: function(req,res){
         ProductModel.find({}).lean().exec(
             (err,products)=> {

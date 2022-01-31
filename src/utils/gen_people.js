@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const faker = require('@faker-js/faker');
 const PersonModel = require('../models/PersonModel');
-require('dotenv/config');
+require('dotenv').config({path: '../../.env'});
 
-
-
-mongoose.connect(`mongodb://${DB_USER}:${DB_PWD}@${DB_HOST}:${PORT}/${DB_NAME}`,
+mongoose.connect(`mongodb://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}:${process.env.PORT}/${process.env.DBNAME}`,
     {useNewUrlParser: true});
 
 async function add(n){

@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const faker = require('@faker-js/faker');
 const ProductModel = require('../models/ProductModel');
-require('dotenv').config();
+require('dotenv').config({path: '../../.env'});
 
-
-console.log(process.env.DBUSER)
 
 mongoose.connect(`mongodb://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}:${process.env.PORT}/${process.env.DBNAME}`,
     {useNewUrlParser: true});

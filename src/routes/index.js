@@ -4,7 +4,7 @@ const router = express.Router();
 const PersonController = require('../controllers/PersonController');
 const ProductController = require('../controllers/ProductController');
 
-router.get('/people', ()=>{}/* PersonController.all */);
-router.get('/products', ()=>{}/* ProductController.all */);
+router.get('/people', PersonController.all);
+router.get('/products', ProductController.all);
 
 module.exports = router;

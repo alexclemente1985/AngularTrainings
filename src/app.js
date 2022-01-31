@@ -26,10 +26,8 @@ mongoose.connect(`mongodb://${mongoAccess.user}:${mongoAccess.pwd}@${mongoAccess
     .then(
         () => {
             try{
-               // app.use('/api',api);
-                
-               
-
+                app.use('/api',api);
+                               
                 app.use(function(req,res,next){
                     res.status(404).send('Not found');
                 })    
@@ -40,6 +38,4 @@ mongoose.connect(`mongodb://${mongoAccess.user}:${mongoAccess.pwd}@${mongoAccess
             }
         }
     );
-
-//app.use('/api',api());
 

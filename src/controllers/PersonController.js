@@ -1,6 +1,6 @@
 const PersonModel = require('../models/PersonModel');
 
-module.export = {
+module.exports = {
     all: function(req,res){
         PersonModel.find({}).lean().exec(
             (err,people)=> {
