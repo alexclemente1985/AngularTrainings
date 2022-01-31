@@ -14,8 +14,6 @@ const mongoAccess = {
     dbname: process.env.DBNAME
 }
 
-console.log('mongoAccess -> ', mongoAccess)
-console.log(`${mongoAccess.user}:${mongoAccess.pwd}}@${mongoAccess.host}:${mongoAccess.port}/${mongoAccess.dbname}`)
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
