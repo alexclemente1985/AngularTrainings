@@ -15,11 +15,11 @@ export class ProductService {
   ) { }
 
   getProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.url + constants.api_routes.PRODUCTS/* `${this.url}/products` */)
+    return this.http.get<Product[]>(this.url + constants.api_routes.PRODUCTS)
     .pipe(
       tap(p=>console.log(p)),
       catchError(()=>{
-        return throwError(()=> new Error(constants.error_msgs.server.PEOPLE_API_ERROR/* 'Products api error' */) )
+        return throwError(()=> new Error(constants.error_msgs.server.PEOPLE_API_ERROR) )
       })
     );
   }

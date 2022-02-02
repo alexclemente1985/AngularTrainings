@@ -41,27 +41,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
- /*  AuthUtils(group: FormGroup){
-    if(group){
-      const password1 = group.controls['password1'].value;
-      const password2 = group.controls['password2'].value;
-      if(password1 === password2){
-        return null;
-      }
-    }
-    return {matching: false}
-  } */
-
-  /* snackBarHandler(msg: string){
-    this.snackBar.open(
-      msg,
-      'OK',
-      {duration: 2000}
-      )
-  } */
-
-  
-
   onSubmit(){
     console.log(this.formRegister.value)
     let u: User = {
@@ -72,27 +51,12 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       {
         next: () => {
-          //this.snackBarHandler(constants.success_msgs.SUCCESS_REGISTER);
-          this.notificationService.openSnackBar(constants.success_msgs.SUCCESS_REGISTER);
+         this.notificationService.openSnackBar(constants.success_msgs.SUCCESS_REGISTER);
           const loginUrl = constants.routes.AUTH + constants.auth_routes.LOGIN
           this.router.navigateByUrl(loginUrl);
         },
-        error: (e) => this.notificationService.openSnackBar(constants.error_msgs.auth.REGISTER + ' ' + e.message)//this.snackBarHandler(e.error.message)
+        error: (e) => this.notificationService.openSnackBar(constants.error_msgs.auth.REGISTER + ' ' + e.error.message)
       }
-      /* (u)=>{
-        this.snackBar.open(
-          'Successfully registered. Use your credentials to log in',
-          'OK',
-          {duration: 2000}
-          )
-      },
-      (err)=>{
-        this.snackBar.open(
-          'Successfully registered. Use your credentials to log in',
-          'OK',
-          {duration: 2000}
-          )
-      } */
     );
   }
 

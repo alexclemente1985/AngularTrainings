@@ -3,10 +3,11 @@ export default {
    routes:{
       API: "/api", 
       AUTH: "/auth",
+      USER: "/user"
    },
    api_routes:{
       PEOPLE: "/people",
-      PRODUCTS: "/products"
+      PRODUCTS: "/products",
    },
    auth_routes:{
       LOGIN: "/login",
