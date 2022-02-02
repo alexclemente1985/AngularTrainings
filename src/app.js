@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const api = require('./routes');
+const {api, auth} = require('./routes')
 require('dotenv').config();
 
 const app = express();
@@ -24,7 +24,8 @@ mongoose.connect(`mongodb://${mongoAccess.user}:${mongoAccess.pwd}@${mongoAccess
     .then(
         () => {
             try{
-                app.use('/api',api);
+                app.use('/api', api);
+                app.use('/auth', auth)
                                
                 app.use(function(req,res,next){
                     res.status(404).send('Not found');
