@@ -1,0 +1,1 @@
+export { DepartmentFormComponent } from './department-form/department-form.component';
