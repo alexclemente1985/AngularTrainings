@@ -1,0 +1,47 @@
+<div 
+  fxLayoutGap="20px">
+
+  <ng-container *ngIf="isSimpleProducts">
+    <app-simple-http-get></app-simple-http-get>
+  </ng-container>
+  <ng-container *ngIf="isProductsError">
+    <app-http-get-products-error></app-http-get-products-error>
+  </ng-container>
+  <ng-container *ngIf="isLoadingProducts">
+    <app-loading-get-products></app-loading-get-products>
+  </ng-container>
+  <ng-container *ngIf="isLoadingProductsID">
+    <app-loading-get-product-ids></app-loading-get-product-ids>
+  </ng-container>
+  <ng-container *ngIf="isDeleteProduct">
+    <app-http-delete></app-http-delete>
+  </ng-container>
+  <ng-container *ngIf="isEditProduct">
+    <app-http-edit></app-http-edit>
+  </ng-container>
+
+  <!-- <mat-card fxFlex="50"  class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Simple HTTP GET</mat-card-title>
+    </mat-card-header>
+    <mat-card-content> -->
+        <!-- async: Faz com que o observable faça um subscribe implícito -->
+       <!--  <mat-list *ngIf="simpleReqProdutsObs$ | async as prods">
+            <mat-list-item *ngFor="let p of prods">
+                <mat-icon mat-list-icon>shop</mat-icon>
+                <h4 mat-line>{{p.name}}</h4>
+                <p mat-line>Department: {{p.department}} - Price: {{p.price | currency: '$'}}</p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="getSimpleHttpRequest()">
+        <mat-icon>swap_vert</mat-icon> Send Request
+      </button>
+    </mat-card-actions>
+    <mat-card-footer>	
+    </mat-card-footer>
+  </mat-card> -->
+  
+
+</div>
