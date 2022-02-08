@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "productsang13": {
+      "hosting": {
+        "firestore": [
+          "productsang13"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "productsang13"
+  }
+}
