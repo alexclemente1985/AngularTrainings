@@ -7,7 +7,7 @@ const { argv } = require('yargs');
 const environment = argv.environment;
 const isProduction = environment === 'prod';
 
-require('dotenv').config({path: `./src/${isProduction ? '.env' : '.env.development'}`});
+require('dotenv').config({path: `./${isProduction ? '.env' : '.env.development'}`});
 
 const envDirectory = './src/environments';
 const prodEnv = 'environment.prod.ts';
