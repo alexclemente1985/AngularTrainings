@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cloudstorageang13": {
+      "hosting": {
+        "cloudstorage": [
+          "cloudstorageang13"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cloudstorageang13"
+  }
+}
