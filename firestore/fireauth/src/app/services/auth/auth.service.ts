@@ -19,13 +19,11 @@ export class AuthService {
   ) { }
 
   register(user: User){
-    console.log('caindo aqui ', user)
     return from(this.afauth
     .createUserWithEmailAndPassword(user.email, user.password as string))
     .pipe(
       switchMap(
         async (u: firebase.default.auth.UserCredential) =>{
-          console.log('u ', u)
           await this.userCollection.doc(u.user?.uid)
             .set({ ...user, id: u.user?.uid });
           return true;

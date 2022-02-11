@@ -16,7 +16,5 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
   ],
 })
 export class MainModule {
-  constructor(){
-    console.log('Carregou main module')
-  }
+  constructor(){}
 }
