@@ -1,0 +1,12 @@
+{
+  "name": "socketio",
+  "version": "1.0.0",
+  "description": "Socket.io training project",
+  "main": "index.js",
+  "author": "Alexandre C. Pinheiro",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4",
+    "socket.io": "^4.4.1"
+  }
+}
