@@ -2,7 +2,7 @@ import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-//import toastr from 'toastr';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from '../shared/models/category.model';
 import { CategoryService } from '../shared/services/category.service';
 
@@ -24,7 +24,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +38,59 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.setPageTitle();
   }
 
+  submitForm(){
+    this.submittingForm = true;
+
+    if(this.currentAction == "new"){
+      this.createCategory();
+    }
+    else {
+      this.updateCategory();
+    }
+  }
+
+  private createCategory(){
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    console.log('Caiu no createCategory')
+    this.categoryService.create(category)
+    .subscribe({
+      next: (category) => this.actionsForSuccess(category),
+      error: (e) => this.actionsForError(e)
+    })
+  }
+
+  private updateCategory(){
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.update(category)
+    .subscribe({
+      next: (category) => this.actionsForSuccess(category),
+      error: (e) => this.actionsForError(e)
+    })
+  }
+
+  private actionsForSuccess(category: Category){
+    this.toastr.success("Solicitação processada com sucesso!");
+
+    // redirect/reload component page
+    this.router.navigateByUrl("categories", {skipLocationChange: true})
+    .then(
+      () => this.router.navigate(['categories', category.id, "edit"])
+    )
+  }
+
+  private actionsForError(error: any){
+    this.toastr.error("Ocorreu um erro ao processar a sua solicitação!");
+
+    this.submittingForm = false;
+
+    if(error.status === 422){
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    }
+    else {
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, teste mais tarde."]
+    }
+  }
+
   private setCurrentAction(){
     if(this.route.snapshot.url[0].path === "new"){
       this.currentAction = "new";
@@ -44,12 +98,14 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     else{
       this.currentAction = "edit";
     }
+
   }
 
   private buildCategoryForm(){
+    console.log('Criando category form')
     this.categoryForm = this.fb.group({
       id: [null],
-      name: [null, [Validators.required, Validators.minLength(2)]],
+      name: [null, [Validators.required, Validators.minLength(3)]],
       description: [null]
     })
   }
@@ -79,5 +135,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
       this.pageTitle = "Editando Categoria: " + categoryName;
     }
   }
+
 
 }

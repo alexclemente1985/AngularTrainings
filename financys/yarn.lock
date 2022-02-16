@@ -128,9 +128,9 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/animations@~13.2.0":
+"@angular/animations@^13.2.2":
   version "13.2.2"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-13.2.2.tgz#b6af6962a721d73a3832d6f4891dc644bee50ed7"
+  resolved "http://nexus.sicoob.com.br/repository/npm-public/@angular/animations/-/animations-13.2.2.tgz#b6af6962a721d73a3832d6f4891dc644bee50ed7"
   integrity sha512-qX8LAMuCJaueHBVyuwKtqunx96G0Dr26k7y5Z03VTcscYst4Ib4V2d4i5dwn3HS82DehFdO86cm3Hi2PqE/qww==
   dependencies:
     tslib "^2.3.0"
@@ -3828,7 +3828,7 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jquery@>=1.12.0, jquery@^3.6.0:
+jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
@@ -4403,6 +4403,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngx-toastr@^14.2.1:
+  version "14.2.1"
+  resolved "http://nexus.sicoob.com.br/repository/npm-public/ngx-toastr/-/ngx-toastr-14.2.1.tgz#2899cc6e69af607aa89a2de807c32b46fdc035f8"
+  integrity sha512-1Kq//y8tTgglUYKHIziZwpo4R7fe4/neidcxfbAXzXtcViSjT4Z21Vgqn/inoBlwoc7E9qXQDuZoJr2lanCgGA==
+  dependencies:
+    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"
@@ -5952,13 +5959,6 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
-
-toastr@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/toastr/-/toastr-2.1.4.tgz#8b43be64fb9d0c414871446f2db8e8ca4e95f181"
-  integrity sha1-i0O+ZPudDEFIcURvLbjoyk6V8YE=
-  dependencies:
-    jquery ">=1.12.0"
 
 toidentifier@1.0.1:
   version "1.0.1"
