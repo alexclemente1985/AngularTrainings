@@ -17,7 +17,7 @@ export class EntryService {
     return this.http.get(this.apiPath)
     .pipe(
       catchError(this.handleError),
-      map(this.jsonDataToCategories)
+      map(this.jsonDataToEntries)
     )
   }
 
@@ -27,7 +27,7 @@ export class EntryService {
     return this.http.get(url)
     .pipe(
       catchError(this.handleError),
-      map(this.jsonDataToCategory)
+      map(this.jsonDataToEntry)
     )
   }
 
@@ -35,7 +35,7 @@ export class EntryService {
     return this.http.post(this.apiPath, entry)
     .pipe(
       catchError(this.handleError),
-      map(this.jsonDataToCategory)
+      map(this.jsonDataToEntry)
     )
   }
 
@@ -58,20 +58,23 @@ export class EntryService {
     )
   }
 
-  private jsonDataToCategory(jsonData: any): Entry{
-    return jsonData as Entry;
+  private jsonDataToEntry(jsonData: any): Entry{
+    return Object.assign(new Entry(), jsonData);//jsonData as Entry;
   }
 
-  private jsonDataToCategories(jsonData: any[]): Entry[]{
+  private jsonDataToEntries(jsonData: any[]): Entry[]{
     const entries: Entry[] = [];
     jsonData.forEach(
-      element => entries.push(element as Entry)
+      element => {
+        //Permite que método get paidText do entry.service funcione
+        const entry = Object.assign(new Entry(), element);
+        entries.push(entry)
+      }
     );
     return entries;
   }
 
   private handleError(error: any): Observable<any>{
-    console.log("Erro na requisição => ", error);
     return throwError(()=> new Error(error))
   }
 }

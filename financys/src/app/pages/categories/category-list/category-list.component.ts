@@ -26,17 +26,16 @@ export class CategoryListComponent implements OnInit {
 
   deleteCategory(category: Category){
     const mustDelete = confirm("Deseja realmente excluir este item?");
-    
+
     if(mustDelete){
-      console.log('caiu no delete')
       this.categoryService.delete(category.id as number)
       .subscribe({
         next: () => this.categories = this.categories.filter(element => element != category),
         error: (e) => alert("Erro ao tentar excluir")
       })
     }
-    
-    
+
+
 
   }
 

@@ -51,7 +51,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   private createCategory(){
     const category: Category = Object.assign(new Category(), this.categoryForm.value);
-    console.log('Caiu no createCategory')
     this.categoryService.create(category)
     .subscribe({
       next: (category) => this.actionsForSuccess(category),
@@ -102,7 +101,6 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private buildCategoryForm(){
-    console.log('Criando category form')
     this.categoryForm = this.fb.group({
       id: [null],
       name: [null, [Validators.required, Validators.minLength(3)]],
