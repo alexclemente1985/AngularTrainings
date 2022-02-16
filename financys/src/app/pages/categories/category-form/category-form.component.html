@@ -4,7 +4,7 @@
         <a routerLink="/">Home</a>
       </li>
       <li class="breadcrumb-item">Categorias</li>
-      <li class="breadcrumb-item active">Formulário de Categoria</li>
+      <li class="breadcrumb-item active">Formulário de Categoria {{currentAction}}</li>
     </ol>
   </nav>
   
@@ -15,13 +15,13 @@
       </h1>
     </div>
     <div class="col-md-3 text-right">
-      <a routerLink="new" class="btn btn-light float-right">
+      <a routerLink="/categories" class="btn btn-light float-right">
         << Voltar
       </a>
     </div>
   </div>
 
-  <form>
+  <form [formGroup]="categoryForm">
       <div class="card">
           <div class="card-header">
               Informações sobre a categoria
