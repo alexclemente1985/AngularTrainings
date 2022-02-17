@@ -95,7 +95,7 @@
                   </div>
                 </div>
                 <!-- categoryId -->
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                   <label for="categoryId">Categoria</label>
                   <select class="form-control" id="categoryId" formControlName="categoryId" name="categoryId">
                     <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
@@ -105,7 +105,7 @@
                   </div>
                 </div>
                 <!-- description -->
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-7">
                   <label for="description">Descrição</label>
                   <input type="text" class="form-control" id="description" formControlName="description">
                 </div>
