@@ -1,4 +1,4 @@
-import {  HttpClientModule } from '@angular/common/http';
+import {  HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -18,9 +18,20 @@ import { InMemoryDatabase } from './in-memory-database';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+   /*  TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+    }
+    }) */
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/* export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+} */

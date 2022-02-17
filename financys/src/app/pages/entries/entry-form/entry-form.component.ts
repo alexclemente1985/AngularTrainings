@@ -6,6 +6,8 @@ import { CategoryService } from '../../categories/shared/services/category.servi
 import { ToastrService } from 'ngx-toastr';
 import { Entry } from '../shared/models/entry.model';
 import { switchMap } from 'rxjs';
+import { PrimeNGConfig } from 'primeng/api';
+import ptLocale from '../../../config/locales/pt';
 
 @Component({
   selector: 'app-entry-form',
@@ -22,18 +24,47 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   submittingForm: boolean = false;
   entry: Entry = new Entry();
 
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    thousandSeparator: '',
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+
+  public ptBR = {
+    firstDayOfWeek: 0,
+    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+    monthNames: [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+      'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ],
+    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    today: 'Hoje',
+    clear: 'Limpar'
+  }
+
+  locale = {
+    locale: 'ptBR'
+  }
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private entryService: EntryService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private config: PrimeNGConfig
   ) { }
 
   ngOnInit(): void {
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.config.setTranslation(ptLocale.primeng)
   }
 
   ngAfterContentChecked(): void {
