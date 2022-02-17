@@ -5,9 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../categories/shared/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { Entry } from '../shared/models/entry.model';
-import { switchMap } from 'rxjs';
+import { switchMap, Observable, Subject, Subscription } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
 import ptLocale from '../../../config/locales/pt';
+import { Category } from '../../categories/shared/models/category.model';
 
 @Component({
   selector: 'app-entry-form',
@@ -24,6 +25,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   submittingForm: boolean = false;
   entry: Entry = new Entry();
 
+  typeOptions: Array<any> = []
+  categories: Array<Category> = [];
+  categoriesSubscription$!: Subscription;
+
   imaskConfig = {
     mask: Number,
     scale: 2,
@@ -33,42 +38,32 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     radix: ','
   };
 
-  public ptBR = {
-    firstDayOfWeek: 0,
-    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
-    monthNames: [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
-      'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ],
-    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    today: 'Hoje',
-    clear: 'Limpar'
-  }
-
-  locale = {
-    locale: 'ptBR'
-  }
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private entryService: EntryService,
     private toastr: ToastrService,
-    private config: PrimeNGConfig
+    private config: PrimeNGConfig,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.loadTypeOptions();
+    this.loadCategories();
     this.config.setTranslation(ptLocale.primeng)
+
   }
 
   ngAfterContentChecked(): void {
     this.setPageTitle();
+  }
+
+  ngOnDestroy(){
+    this.categoriesSubscription$.unsubscribe();
   }
 
   submitForm(){
@@ -82,6 +77,28 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  private loadCategories(){
+    this.categoriesSubscription$ = this.categoryService.getAll()
+    .subscribe(
+      {
+        next: (cat: Category[]) => this.categories = cat,
+        error: (e) => console.log(e)
+      }
+    )
+  }
+
+  private loadTypeOptions(){
+    this.typeOptions = this.getTypeOptions()
+  }
+
+  private getTypeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(
+      ([value, text]) =>{
+        return {text: text,value: value}
+      }
+    )
+  }
+
   private loadEntry(){
     if(this.currentAction === "edit"){
       this.route.paramMap
@@ -91,7 +108,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       .subscribe({
         next: (entry) => {
           this.entry = entry;
-          this.entryForm.patchValue(entry) // binds loaded datat to EntryForm
+          this.entryForm.patchValue(entry) // binds loaded data to EntryForm
         },
         error: (e) => console.log("Ocorreu um erro no servidor: ",e)
       })
@@ -103,10 +120,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [Validators.required, Validators.minLength(3)]],
       description: [null],
-      type: [null,[Validators.required]],
+      type: ['expense',[Validators.required]],
       amount: [null,[Validators.required]],
       date: [null,[Validators.required]],
-      paid: [null,[Validators.required]],
+      paid: [true,[Validators.required]],
       categoryId: [null,[Validators.required]]
     })
   }

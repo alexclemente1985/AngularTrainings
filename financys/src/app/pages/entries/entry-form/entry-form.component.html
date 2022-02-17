@@ -33,8 +33,7 @@
               <div class="form-group col-md-2">
                 <label for="type">Tipo</label>
                 <select class="form-control" id="type" formControlName="type" name="type">
-                  <option value="expense">Despesa</option>
-                  <option value="revenue">Receita</option>
+                  <option *ngFor="let option of typeOptions" [value]="option.value">{{option.text}}</option>
                 </select>
                 <div class="text-danger" *ngIf="entryForm.get('type')?.invalid && entryForm.get('type')?.touched">
                   <div *ngIf="entryForm.get('type')?.errors?.['required']">Dado obrigatório</div>
@@ -51,7 +50,7 @@
               </div>
               <!-- amount -->
               <div class="form-group col-md-3">
-                <label for="name">Valor</label>
+                <label for="amount">Valor</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">R$</div>
@@ -65,7 +64,7 @@
               </div>
               <!-- date -->
               <div class="form-group col-md-2">
-                <label for="name">Data</label>
+                <label for="date">Data</label>
                 <p-calendar
                   id="date"
                   formControlName="date"
@@ -75,17 +74,44 @@
                   [showButtonBar]="true"
                 >
                 </p-calendar>
-                <div class="text-danger" *ngIf="entryForm.get('amount')?.invalid && entryForm.get('amount')?.touched">
-                  <div *ngIf="entryForm.get('amount')?.errors?.['required']">Dado obrigatório</div>
+                <div class="text-danger" *ngIf="entryForm.get('date')?.invalid && entryForm.get('date')?.touched">
+                  <div *ngIf="entryForm.get('date')?.errors?.['required']">Dado obrigatório</div>
                 </div>
               </div>
-              <!-- description -->
-              <div class="form-group col-md-8">
-                <label for="description">Descrição</label>
-                <input type="text" class="form-control" id="description" formControlName="description">
+              <!-- paid -->
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <label for="paid">Pago</label>
+                  <div class="btn-group" role="group">
+                    <label (click)="entryForm.get('paid')?.setValue(true)" class="btn btn-outline-info" [class.active] = "entryForm.get('paid')?.value == true" >
+                      Pago
+                    </label>
+                    <label (click)="entryForm.get('paid')?.setValue(false)" class="btn btn-outline-info" [class.active] = "entryForm.get('paid')?.value == false" >
+                      Pendente
+                    </label>
+                  </div>
+                  <div class="text-danger" *ngIf="entryForm.get('paid')?.invalid && entryForm.get('paid')?.touched">
+                    <div *ngIf="entryForm.get('paid')?.errors?.['required']">Dado obrigatório</div>
+                  </div>
+                </div>
+                <!-- categoryId -->
+                <div class="form-group col-md-2">
+                  <label for="categoryId">Categoria</label>
+                  <select class="form-control" id="categoryId" formControlName="categoryId" name="categoryId">
+                    <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+                  </select>
+                  <div class="text-danger" *ngIf="entryForm.get('categoryId')?.invalid && entryForm.get('categoryId')?.touched">
+                    <div *ngIf="entryForm.get('categoryId')?.errors?.['required']">Dado obrigatório</div>
+                  </div>
+                </div>
+                <!-- description -->
+                <div class="form-group col-md-8">
+                  <label for="description">Descrição</label>
+                  <input type="text" class="form-control" id="description" formControlName="description">
+                </div>
               </div>
-            </div>
 
+            </div>
         </div>
     </div>
     <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
