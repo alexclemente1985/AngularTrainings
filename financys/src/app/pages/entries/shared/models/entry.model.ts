@@ -1,4 +1,4 @@
-import { BaseResourceModel } from "src/app/pages/categories/shared/models/base-resource.model";
+import { BaseResourceModel } from "src/app/shared/models/base-resource.model";
 import { Category } from "src/app/pages/categories/shared/models/category.model";
 
 export class Entry extends BaseResourceModel{

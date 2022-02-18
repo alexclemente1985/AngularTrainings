@@ -10,14 +10,11 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    AppRoutingModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-/* export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http);
-} */
