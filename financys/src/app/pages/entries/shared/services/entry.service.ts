@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, flatMap, map, mergeMap, Observable, throwError } from 'rxjs';
+import { CategoryService } from 'src/app/pages/categories/shared/services/category.service';
 import { Entry } from '../models/entry.model';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class EntryService {
 
   private apiPath: string = "api/entries";
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private categoryService: CategoryService
   ) { }
 
   getAll(): Observable<Entry[]>{
@@ -32,20 +34,34 @@ export class EntryService {
   }
 
   create(entry: Entry): Observable<Entry>{
-    return this.http.post(this.apiPath, entry)
+
+   return this.categoryService.getById(entry.categoryId as number)
     .pipe(
-      catchError(this.handleError),
-      map(this.jsonDataToEntry)
+      //permite o retorno de Observable<Entry> e não Observable<Observable<Entry>>)
+      mergeMap(category => {
+        entry.category = category;
+        return this.http.post(this.apiPath, entry)
+        .pipe(
+            catchError(this.handleError),
+            map(this.jsonDataToEntry)
+         )
+      })
     )
   }
 
   update(entry: Entry): Observable<Entry>{
     const url = `${this.apiPath}/${entry.id}`;
 
-    return this.http.put(url, entry)
+    return this.categoryService.getById(entry.categoryId as number)
     .pipe(
-      catchError(this.handleError),
-      map(()=> entry)
+      mergeMap(category =>{
+        entry.category = category;
+        return this.http.put(url, entry)
+        .pipe(
+          catchError(this.handleError),
+          map(()=> entry)
+        )
+      })
     )
   }
 
