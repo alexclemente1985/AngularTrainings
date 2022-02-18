@@ -1,7 +1,7 @@
 import { BaseResourceService } from 'src/app/shared/services/base-resource/base-resource.service';
 import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
-import { AfterContentChecked, Component, OnInit, Injector, Injectable, Inject, Directive } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterContentChecked,  OnInit, Injector, Inject, Directive } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { switchMap } from 'rxjs';
@@ -20,11 +20,11 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   protected route: ActivatedRoute;
 
   constructor(
+    protected injector: Injector,
     @Inject(BaseResourceModel) public resource: T,
     protected resourceService: BaseResourceService<T>,
     protected jsonDataToResourceFn: (jsonData: any) => T,
-    protected toastr: ToastrService,
-    protected injector: Injector
+    protected toastr: ToastrService
   ) {
     this.route = this.injector.get(ActivatedRoute);
     this.router = this.injector.get(Router);
