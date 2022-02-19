@@ -30,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let e of entries">
+    <tr *ngFor="let e of resources">
       <td>
         <strong>{{e.name}}</strong><br>
         <small class="text-success">{{e.date}}</small><br>
@@ -46,7 +46,7 @@
         </td>
       <td class="text-center">
         <a [routerLink]="[e.id,'edit']" class="btn btn-outline-info btn-sm me-2">Editar</a>
-        <a (click)="deleteEntry(e)" class="btn btn-outline-danger btn-sm">Excluir</a>
+        <a (click)="deleteResource(e)" class="btn btn-outline-danger btn-sm">Excluir</a>
       </td>
     </tr>
   </tbody>
