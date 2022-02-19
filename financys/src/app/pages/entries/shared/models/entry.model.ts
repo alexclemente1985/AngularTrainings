@@ -1,6 +1,7 @@
 import { BreadCrumbItem } from './../../../../shared/interfaces/bread-crumb-item';
 import { BaseResourceModel } from "src/app/shared/models/base-resource.model";
 import { Category } from "src/app/pages/categories/shared/models/category.model";
+import { ActionButton } from 'src/app/shared/interfaces/action-button';
 
 export class Entry extends BaseResourceModel{
   constructor(
@@ -28,6 +29,12 @@ export class Entry extends BaseResourceModel{
   static breadCrumbTypes: BreadCrumbItem = {
     text: 'Lançamentos',
     link: '/entries'
+  }
+
+  static actionButtonConfig: ActionButton = {
+    text: '+ Novo Lançamento',
+    link: 'new',
+    class: 'btn-success'
   }
 
   get paidText(): string{

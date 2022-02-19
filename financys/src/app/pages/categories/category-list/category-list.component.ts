@@ -1,3 +1,4 @@
+import { ActionButton } from './../../../shared/interfaces/action-button';
 import { Component, OnInit } from '@angular/core';
 import { catchError, filter, switchMap, throwError } from 'rxjs';
 import { BaseResourceListComponent } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
@@ -12,12 +13,14 @@ import { CategoryService } from '../shared/services/category.service';
 })
 export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
-  resourceBreadCrumb!: BreadCrumbItem;
+  resourceBreadCrumb: BreadCrumbItem;
+  actionButtonConfig: ActionButton;
 
   constructor(
     private categoryService: CategoryService
   ) {
     super(categoryService);
     this.resourceBreadCrumb = Category.breadCrumbTypes;
+    this.actionButtonConfig = Category.actionButtonConfig;
    }
 }

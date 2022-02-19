@@ -1,12 +1,12 @@
+import { ActionButton } from './../../../shared/interfaces/action-button';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
 import { EntryService } from './../shared/services/entry.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AfterContentChecked, Component, Inject, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Validators } from '@angular/forms';
+import {Component, Injector, OnInit } from '@angular/core';
 import { CategoryService } from '../../categories/shared/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { Entry } from '../shared/models/entry.model';
-import { switchMap, Observable, Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
 import ptLocale from '../../../config/locales/pt';
 import { Category } from '../../categories/shared/models/category.model';
@@ -23,7 +23,8 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
   typeOptions: Array<any> = []
   categories: Array<Category> = [];
   categoriesSubscription$!: Subscription;
-  resourceBreadCrumb!: BreadCrumbItem;
+  resourceBreadCrumb: BreadCrumbItem;
+  actionButtonConfig: ActionButton;
 
   imaskConfig = {
     mask: Number,
@@ -43,6 +44,11 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
   ) {
     super(injector, new Entry(), entryService, Entry.fromJson, toastr);
     this.resourceBreadCrumb = Entry.breadCrumbTypes;
+    this.actionButtonConfig = {
+      text: '<< Voltar',
+      class: 'btn-light',
+      link: this.resourceBreadCrumb.link as string
+    };
    }
 
   override ngOnInit(): void {

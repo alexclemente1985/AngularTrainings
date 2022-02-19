@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Category } from '../shared/models/category.model';
 import { CategoryService } from '../shared/services/category.service';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
+import { ActionButton } from 'src/app/shared/interfaces/action-button';
 
 @Component({
   selector: 'app-category-form',
@@ -16,7 +17,8 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
 
   category: Category = new Category();
-  resourceBreadCrumb!: BreadCrumbItem;
+  resourceBreadCrumb: BreadCrumbItem;
+  actionButtonConfig: ActionButton;
 
   constructor(
     protected categoryService: CategoryService,
@@ -25,6 +27,11 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   ) {
     super(injector, new Category(), categoryService, Category.fromJson, toastr);
     this.resourceBreadCrumb = Category.breadCrumbTypes;
+    this.actionButtonConfig = this.actionButtonConfig = {
+      text: '<< Voltar',
+      class: 'btn-light',
+      link: this.resourceBreadCrumb.link as string
+    };
    }
 
   protected buildResourceForm(){
