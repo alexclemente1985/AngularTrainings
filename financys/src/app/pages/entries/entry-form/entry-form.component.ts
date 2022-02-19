@@ -10,6 +10,7 @@ import { switchMap, Observable, Subject, Subscription } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
 import ptLocale from '../../../config/locales/pt';
 import { Category } from '../../categories/shared/models/category.model';
+import { BreadCrumbItem } from 'src/app/shared/interfaces/bread-crumb-item';
 
 @Component({
   selector: 'app-entry-form',
@@ -22,6 +23,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
   typeOptions: Array<any> = []
   categories: Array<Category> = [];
   categoriesSubscription$!: Subscription;
+  resourceBreadCrumb!: BreadCrumbItem;
 
   imaskConfig = {
     mask: Number,
@@ -39,7 +41,8 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     protected categoryService: CategoryService,
     protected override injector: Injector
   ) {
-    super(injector, new Entry(), entryService, Entry.fromJson, toastr)
+    super(injector, new Entry(), entryService, Entry.fromJson, toastr);
+    this.resourceBreadCrumb = Entry.breadCrumbTypes;
    }
 
   override ngOnInit(): void {

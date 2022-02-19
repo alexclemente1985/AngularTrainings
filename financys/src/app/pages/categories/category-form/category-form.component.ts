@@ -1,3 +1,4 @@
+import { BreadCrumbItem } from './../../../shared/interfaces/bread-crumb-item';
 import { AfterContentChecked, Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,13 +16,15 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
 
   category: Category = new Category();
+  resourceBreadCrumb!: BreadCrumbItem;
 
   constructor(
     protected categoryService: CategoryService,
     protected override toastr: ToastrService,
     protected override injector: Injector
   ) {
-    super(injector, new Category(), categoryService, Category.fromJson, toastr)
+    super(injector, new Category(), categoryService, Category.fromJson, toastr);
+    this.resourceBreadCrumb = Category.breadCrumbTypes;
    }
 
   protected buildResourceForm(){

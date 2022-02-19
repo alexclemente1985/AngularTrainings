@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, filter, switchMap, throwError } from 'rxjs';
 import { BaseResourceListComponent } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
+import { BreadCrumbItem } from 'src/app/shared/interfaces/bread-crumb-item';
 import { Category } from '../shared/models/category.model';
 import { CategoryService } from '../shared/services/category.service';
 
@@ -11,9 +12,12 @@ import { CategoryService } from '../shared/services/category.service';
 })
 export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
+  resourceBreadCrumb!: BreadCrumbItem;
+
   constructor(
     private categoryService: CategoryService
   ) {
-    super(categoryService)
+    super(categoryService);
+    this.resourceBreadCrumb = Category.breadCrumbTypes;
    }
 }

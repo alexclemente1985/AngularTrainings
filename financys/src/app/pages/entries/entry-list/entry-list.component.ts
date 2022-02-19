@@ -2,6 +2,7 @@ import { BaseResourceListComponent } from 'src/app/shared/components/base-resour
 import { Component, OnInit } from '@angular/core';
 import { Entry } from '../shared/models/entry.model';
 import { EntryService } from '../shared/services/entry.service';
+import { BreadCrumbItem } from 'src/app/shared/interfaces/bread-crumb-item';
 
 @Component({
   selector: 'app-entry-list',
@@ -10,9 +11,12 @@ import { EntryService } from '../shared/services/entry.service';
 })
 export class EntryListComponent extends BaseResourceListComponent<Entry> {
 
+  resourceBreadCrumb!: BreadCrumbItem;
+
   constructor(
     private entryService: EntryService
   ) {
-    super(entryService)
+    super(entryService);
+    this.resourceBreadCrumb = Entry.breadCrumbTypes;
    }
 }

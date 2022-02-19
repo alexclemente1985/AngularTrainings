@@ -1,3 +1,4 @@
+import { BreadCrumbItem } from "src/app/shared/interfaces/bread-crumb-item";
 import { BaseResourceModel } from "../../../../shared/models/base-resource.model";
 
 export class Category extends BaseResourceModel{
@@ -6,6 +7,11 @@ export class Category extends BaseResourceModel{
         public description?: string
     ){
       super();
+    }
+
+    static breadCrumbTypes: BreadCrumbItem = {
+      text: 'Categorias',
+      link: '/categories'
     }
 
     static fromJson(jsonData: any): Category{

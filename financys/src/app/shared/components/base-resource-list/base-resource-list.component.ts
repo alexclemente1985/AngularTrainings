@@ -1,6 +1,6 @@
 import { BaseResourceService } from 'src/app/shared/services/base-resource/base-resource.service';
 import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
-import { Component, OnInit, Directive } from '@angular/core';
+import { OnInit, Directive } from '@angular/core';
 
 @Directive()
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
@@ -9,7 +9,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
 
   constructor(
     private resourceService: BaseResourceService<T>
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.resourceService.getAll()
