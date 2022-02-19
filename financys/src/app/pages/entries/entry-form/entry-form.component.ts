@@ -43,11 +43,10 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
    }
 
   override ngOnInit(): void {
-   // this.loadTypeOptions();
     this.loadCategories();
+    this.loadTypeOptions();
     this.config.setTranslation(ptLocale.primeng);
     super.ngOnInit();
-
   }
 
   ngOnDestroy(){
@@ -64,18 +63,6 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     )
   }
 
-  /* protected loadTypeOptions(){
-    this.typeOptions = this.getTypeOptions()
-  } */
-
-  protected getTypeOptions(): Array<any> {
-    return Object.entries(Entry.types).map(
-      ([value, text]) =>{
-        return {text: text,value: value}
-      }
-    )
-  }
-
   protected override creationPageTitle(): string {
     return "Cadastro de Novo Lançamento";
   }
@@ -86,7 +73,28 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
   }
 
   protected buildResourceForm(): void {
-    throw new Error('Method not implemented.');
+    this.resourceForm = this.fb.group({
+      id: [null],
+      name: [null, [Validators.required, Validators.minLength(2)]],
+      description: [null],
+      type: ["expense", [Validators.required]],
+      amount: [null, [Validators.required]],
+      date: [null, [Validators.required]],
+      paid: [true, [Validators.required]],
+      categoryId: [null, [Validators.required]]
+    });
+  }
+
+  private getTypeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(
+      ([value, text]) =>{
+        return {text: text,value: value}
+      }
+    )
+  }
+
+  private loadTypeOptions(){
+    this.typeOptions = this.getTypeOptions()
   }
 
 }
