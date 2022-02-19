@@ -28,37 +28,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of categories">
+    <tr *ngFor="let c of resources">
       <td>
         <strong>{{c.name}}</strong><br>
         <small>{{c.description}}</small>
       </td>
       <td>
         <a [routerLink]="[c.id,'edit']" class="btn btn-outline-info btn-sm me-2">Editar</a>
-        <a (click)="deleteCategory(c)" class="btn btn-outline-danger btn-sm">Excluir</a>
+        <a (click)="deleteResource(c)" class="btn btn-outline-danger btn-sm">Excluir</a>
       </td>
     </tr>
   </tbody>
 </table>
-
- <!-- <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Home</li>
-  </ol>
-</nav>
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Library</li>
-  </ol>
-</nav>
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Library</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Data</li>
-  </ol>
-</nav>
- -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, filter, switchMap, throwError } from 'rxjs';
+import { BaseResourceListComponent } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
 import { Category } from '../shared/models/category.model';
 import { CategoryService } from '../shared/services/category.service';
 
@@ -8,35 +9,11 @@ import { CategoryService } from '../shared/services/category.service';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
-
-  categories: Category[] = [];
+export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
   constructor(
     private categoryService: CategoryService
-  ) { }
-
-  ngOnInit(): void {
-    this.categoryService.getAll()
-    .subscribe({
-      next: (categories) => this.categories = categories,
-      error: () => alert("Erro ao carregar a lista")
-    })
-  }
-
-  deleteCategory(category: Category){
-    const mustDelete = confirm("Deseja realmente excluir este item?");
-
-    if(mustDelete){
-      this.categoryService.delete(category.id as number)
-      .subscribe({
-        next: () => this.categories = this.categories.filter(element => element != category),
-        error: (e) => alert("Erro ao tentar excluir")
-      })
-    }
-
-
-
-  }
-
+  ) {
+    super(categoryService)
+   }
 }
