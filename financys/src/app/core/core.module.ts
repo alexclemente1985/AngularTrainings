@@ -8,10 +8,14 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDatabase } from '../in-memory-database';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NavbarComponent,
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -25,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NavbarComponent
   ]
 })
 export class CoreModule { }
