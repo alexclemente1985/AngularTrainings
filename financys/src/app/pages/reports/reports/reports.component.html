@@ -11,7 +11,7 @@
         Selecione o mês e ano para gerar os relatórios
     </div>
     <div class="card-body">
-        <div class="form-row">
+        <div class="row">
             <div class="form-group col-md-7">
                 <label for="month">Mês</label>
                 <select #month name="month" id="month" class="form-control">
@@ -45,8 +45,8 @@
                 </select>
             </div>
 
-            <div class="form-row">
-                <div class="col-md float-end">
+            <div class="row mt-4">
+                <div class="col-md text-end">
                     <button type="button" (click)="generateReports()" class="btn btn-primary">
                         Gerar Relatórios
                     </button>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            1500
+                           {{revenueTotal}}
                         </h3>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            1300
+                            {{expenseTotal}}
                         </h3>
                     </div>
                 </div>
@@ -80,20 +80,20 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            200
+                            {{balance}}
                         </h3>
                     </div>
                 </div>
-                
+
                 <hr>
-              
+
             </div>
             <div class="row mt-5 mb-4">
                 <div class="col-md-6">
-                    GRÁFICO DE RECEITAS
+                  <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
                 </div>
                 <div class="col-md-6">
-                    GRÁFICO DE DESPESAS
+                  <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
                 </div>
             </div>
 
