@@ -13,6 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     SharedModule,
     ReportsRoutingModule
-  ]
+  ],
+  exports:[ReportsComponent]
 })
 export class ReportsModule { }
