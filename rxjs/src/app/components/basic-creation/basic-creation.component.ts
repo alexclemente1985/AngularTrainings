@@ -45,7 +45,7 @@ export class BasicCreationComponent implements OnInit {
   }
 
   timerClick() {
-    //const source = timer(1000);
+    //const source = timer(1000).subscribe(v => console.log('timer como delay para execução de função',v));
     const source = timer(3000,1000);
     const subscription = source.subscribe((v) => console.log(v));
     this.subscription.add(subscription);
