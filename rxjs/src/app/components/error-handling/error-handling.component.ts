@@ -28,7 +28,7 @@ export class ErrorHandlingComponent implements OnInit {
         catchError(error => {
           console.error('Inside catchError: ', error);
           //return of(0);
-          return throwError('throwError: Error');
+          return throwError(() => new Error('throwError: Error'));
         }),
         //retry(2),
         retryWhen(i => timer(5000))

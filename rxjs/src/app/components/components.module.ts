@@ -5,6 +5,7 @@ import { BasicCreationComponent } from './basic-creation/basic-creation.componen
 import { OperatorsComponent } from './operators/operators.component';
 import { AsyncComponent } from './async/async.component';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ErrorHandlingComponent } from './error-handling/error-handling.componen
     BasicCreationComponent,
     OperatorsComponent,
     AsyncComponent,
-    ErrorHandlingComponent
+    ErrorHandlingComponent,
+    DragAndDropComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ErrorHandlingComponent } from './error-handling/error-handling.componen
     BasicCreationComponent,
     OperatorsComponent,
     AsyncComponent,
-    ErrorHandlingComponent
+    ErrorHandlingComponent,
+    DragAndDropComponent
   ]
 })
 export class ComponentsModule { }
