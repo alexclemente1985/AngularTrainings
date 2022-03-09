@@ -42,8 +42,8 @@ export class DragAndDropComponent implements OnInit, AfterViewChecked {
               let offsetx = x - em.clientX;
               let offsety = y - em.clientY;
 
-              this.top = offsety;
-              this.left = offsetx;
+              this.top -= offsety;
+              this.left -= offsetx;
 
               x = em.clientX;
               y = em.clientY;
