@@ -18,7 +18,6 @@ export class AsyncComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('kct funciona caramba!')
     this.options$ = new Observable(
       (observer) => {
         for(let i=0;i<10;i++) {
