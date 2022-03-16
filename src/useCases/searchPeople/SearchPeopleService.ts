@@ -29,7 +29,6 @@ class SearchPeopleService {
       PersonRepository.find(query)
         .lean()
         .exec((err, people) => {
-          console.log("caraca");
           if (err) {
             res.status(500).send(err);
           } else {
