@@ -11,6 +11,7 @@
     "generate:dev": "yarn env:config -- --environment=dev && ts-node ./src/config/generate.ts",
     "generate": "yarn env:config -- --environment=prod && ts-node ./src/config/generate.ts",
     "start": "yarn env:config -- --environment=prod && yarn tsc && node dist/server.js",
+    "start:dev": "yarn env:config -- --environment=dev && yarn tsc && node dist/server.js",
     "dev": "yarn env:config -- --environment=dev && ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "dependencies": {
