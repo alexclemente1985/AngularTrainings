@@ -1,0 +1,28 @@
+<ActionBar [title]="flick?.title"></ActionBar>
+
+<ScrollView height="100%">
+  <StackLayout>
+    <!-- hero image -->
+    <image margin="0" stretch="aspectFill" [src]="flick?.image"></image>
+
+    <!-- main content -->
+    <StackLayout padding="10 20">
+      <ng-container *ngFor="let detail of flick?.details">
+        <label
+          marginTop="15"
+          fontSize="16"
+          fontWeight="700"
+          class="text-primary"
+          textWrap="true"
+          [text]="detail.title"
+        ></label>
+        <label
+          fontSize="14"
+          class="text-secondary"
+          textWrap="true"
+          [text]="detail.body"
+        ></label>
+      </ng-container>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>
