@@ -5,6 +5,11 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { AuthRoutingModule } from './auth-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { authFeatureKey, authReducer } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth/auth.effects';
 
 
 
@@ -13,7 +18,12 @@ import { RouterModule } from '@angular/router';
     LoginComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    AuthRoutingModule,
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    EffectsModule.forFeature([
+      AuthEffects
+    ])
   ],
   exports: [
     LoginComponent

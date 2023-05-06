@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { select, Store } from "@ngrx/store";
+import { Observable, tap } from "rxjs";
+import { isLoggedInSelector } from "../store/selectors/auth.selectors";
 
 @Injectable()
 export class AuthGuard {
@@ -16,12 +17,12 @@ export class AuthGuard {
 
       return this.store
           .pipe(
-              /* select(isLoggedIn),
+              select(isLoggedInSelector),
               tap(loggedIn => {
                   if (!loggedIn) {
                       this.router.navigateByUrl('/login');
                   }
-              }) */
+              })
           )
 
 
