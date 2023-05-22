@@ -75,7 +75,7 @@ describe('Async Testing Examples', () => {
     }));
 
 
-    /*  it('Asynchronous test example - Promises + setTimeout()', fakeAsync(() => {
+    it('Asynchronous test example - Promises + setTimeout()', fakeAsync(() => {
 
         let counter = 0;
 
@@ -129,5 +129,5 @@ describe('Async Testing Examples', () => {
         expect(test).toBe(true);
 
 
-    })); */
+    }));
 });

@@ -122,21 +122,49 @@ describe('HomeComponent', () => {
       expect(cardTitles[0].nativeElement.textContent).toContain("Angular Security Course","Could not find card title");
       done();
     }, 500)
+  });
+
+  it("[DOM] should display advanced courses when tab clicked (fakeAsync)", fakeAsync(() => {
+
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+
+    fixture.detectChanges();
+
+    const tabs = el.queryAll(By.css('.mdc-tab'));
+
+    click(tabs[1]);
+
+    fixture.detectChanges();
+
+    flush();
+
+    const cardTitles = el.queryAll(By.css('.mat-mdc-tab-body-active .mat-mdc-card-title'));
+    expect(cardTitles.length).toBeGreaterThan(0,"Could not find card titles");
+    expect(cardTitles[0].nativeElement.textContent).toContain("Angular Security Course","Could not find card title");
+
+  }));
+
+  /* Ideal para casos onde seja necessário chamar métodos http (fakeAsync não permite) */
+  it("[DOM] should display advanced courses when tab clicked (waitForAsync)", waitForAsync(() => {
+
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+
+    fixture.detectChanges();
+
+    const tabs = el.queryAll(By.css('.mdc-tab'));
+
+    click(tabs[1]);
+
+    fixture.detectChanges();
 
     //flush();
-
-   /*  fixture.whenStable().then(()=> {
+    fixture.whenStable()
+    .then(()=> {
       const cardTitles = el.queryAll(By.css('.mat-mdc-tab-body-active .mat-mdc-card-title'));
-
-      console.log('CARD TITLES!!: ', cardTitles)
-
       expect(cardTitles.length).toBeGreaterThan(0,"Could not find card titles");
       expect(cardTitles[0].nativeElement.textContent).toContain("Angular Security Course","Could not find card title");
-   }) */
-
-    
-
-  });
+    });
+  }));
 
 });
 
